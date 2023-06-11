@@ -1,39 +1,50 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Edit Map
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+[![pub package](https://img.shields.io/pub/v/custom_pin_keyboard.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/custom_pin_keyboard)
+[![Last Commits](https://img.shields.io/github/last-commit/arrrtem22/custom_pin_keyboard?logo=git&logoColor=white)](https://github.com/arrrtem22/custom_pin_keyboard/commits/master)
+[![Pull Requests](https://img.shields.io/github/issues-pr/arrrtem22/custom_pin_keyboard?logo=github&logoColor=white)](https://github.com/arrrtem22/custom_pin_keyboard/pulls)
+[![Code size](https://img.shields.io/github/languages/code-size/arrrtem22/custom_pin_keyboard?logo=github&logoColor=white)](https://github.com/arrrtem22/custom_pin_keyboard)
+[![License](https://img.shields.io/github/license/arrrtem22/custom_pin_keyboard?logo=open-source-initiative&logoColor=green)](https://github.com/arrrtem22/custom_pin_keyboard/blob/master/LICENSE)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+<p align="center">
+  <img src="https://github.com/arrrtem22/custom_pin_keyboard/blob/master/screnshoot/showcase.gif?raw=true" height="600px">
+</p>
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A flutter package that gives you custom pin keyboard for one time password widgets.<br>
+All the shortcomings of other packages have been taken into account!
 
-## Features
+**Show some ❤️ and star the repo to support the project**
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### Resources:
+- [Pub Package](https://pub.dev/packages/custom_pin_keyboard)
+- [GitHub Repository](https://github.com/arrrtem22/custom_pin_keyboard)
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### Simple pin keyboard with indicator
 
 ```dart
-const like = 'sample';
+CustomPinKeyboard(
+  onCompleted: (pin) async {
+    // some action
+  },
+  indicatorBackground: Colors.black12,
+  buttonBackground: Colors.transparent,
+  textStyle: const TextStyle(
+    fontWeight: FontWeight.w600,
+    height: 32 / 24,
+    fontSize: 24,
+    color: Colors.blue,
+  ),
+  additionalButton: const Icon(Icons.ac_unit, color: Colors.blue),
+  onAdditionalButtonPressed: () {
+    // some additional action
+  },
+)
 ```
 
-## Additional information
+Feel free to open pull requests.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+# Acknowledgments
+
+This package was originally created by [Artemii Oliinyk](https://github.com/arrrtem22).
