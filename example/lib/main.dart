@@ -81,6 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontSize: 24,
                   color: Colors.blue,
                 ),
+                additionalButton: const Icon(Icons.ac_unit, color: Colors.blue),
+                onAdditionalButtonPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Additional button pressed"),
+                  ));
+                },
               ),
             ),
           ],

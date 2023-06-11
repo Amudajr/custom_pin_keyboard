@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 part 'pin_indicator.dart';
+
 part 'util/custom_pin_keyboard_constants.dart';
 
 typedef PinEnteredCallback = Future<void> Function(String passcode);
@@ -30,6 +31,9 @@ class CustomPinKeyboard extends StatefulWidget {
         CustomPinKeyboardConstants._defaultKeyboardIndicatorSeparator,
     this.buttonBackground = CustomPinKeyboardConstants._defaultButtonBackground,
     this.buttonShape = CustomPinKeyboardConstants._defaultButtonShape,
+    this.backspaceButton = CustomPinKeyboardConstants._defaultBackspace,
+    this.additionalButton,
+    this.onAdditionalButtonPressed,
   }) : super(key: key);
 
   /// Fires when user completes pin input.
@@ -87,6 +91,15 @@ class CustomPinKeyboard extends StatefulWidget {
 
   /// Shape of keyboard buttons.
   final OutlinedBorder buttonShape;
+
+  /// Backspace widget.
+  final Widget backspaceButton;
+
+  /// Button in bottom left corner.
+  final Widget? additionalButton;
+
+  /// Callback of button in bottom left corner.
+  final VoidCallback? onAdditionalButtonPressed;
 
   @override
   State<CustomPinKeyboard> createState() => _CustomPinKeyboardState();
@@ -161,6 +174,9 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
             textStyle: widget.textStyle,
             buttonBackground: widget.buttonBackground,
             buttonShape: widget.buttonShape,
+            backspace: widget.backspaceButton,
+            additionalButton: widget.additionalButton,
+            onAdditionalButtonPressed: widget.onAdditionalButtonPressed,
           ),
         ),
       ],
@@ -192,6 +208,9 @@ class _PinKeyboard extends StatelessWidget {
     required this.textStyle,
     required this.buttonBackground,
     required this.buttonShape,
+    required this.backspace,
+    this.additionalButton,
+    this.onAdditionalButtonPressed,
   }) : super(key: key);
 
   final TextEditingController passcodeController;
@@ -200,6 +219,9 @@ class _PinKeyboard extends StatelessWidget {
   final TextStyle textStyle;
   final Color buttonBackground;
   final OutlinedBorder buttonShape;
+  final Widget backspace;
+  final Widget? additionalButton;
+  final VoidCallback? onAdditionalButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -212,27 +234,24 @@ class _PinKeyboard extends StatelessWidget {
           child: Row(
             children: [
               _KeyboardButton(
-                value: '1',
                 onPressed: () => passcodeController.text += '1',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('1', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '2',
                 onPressed: () => passcodeController.text += '2',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('2', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '3',
                 onPressed: () => passcodeController.text += '3',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('3', style: textStyle),
               ),
             ],
           ),
@@ -243,27 +262,24 @@ class _PinKeyboard extends StatelessWidget {
           child: Row(
             children: [
               _KeyboardButton(
-                value: '4',
                 onPressed: () => passcodeController.text += '4',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('4', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '5',
                 onPressed: () => passcodeController.text += '5',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('5', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '6',
                 onPressed: () => passcodeController.text += '6',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('6', style: textStyle),
               ),
             ],
           ),
@@ -274,27 +290,24 @@ class _PinKeyboard extends StatelessWidget {
           child: Row(
             children: [
               _KeyboardButton(
-                value: '7',
                 onPressed: () => passcodeController.text += '7',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('7', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '8',
                 onPressed: () => passcodeController.text += '8',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('8', style: textStyle),
               ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '9',
                 onPressed: () => passcodeController.text += '9',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('9', style: textStyle),
               ),
             ],
           ),
@@ -304,23 +317,32 @@ class _PinKeyboard extends StatelessWidget {
           fit: FlexFit.loose,
           child: Row(
             children: [
-              const Spacer(),
-              // _BiometricAuthorizationIcon(
-              //   method: biometricAuthMethod,
-              //   onBiometricAuth: onBiometricAuth,
-              // ),
+              if (additionalButton != null)
+                _KeyboardButton(
+                  onPressed: onAdditionalButtonPressed,
+                  background: buttonBackground,
+                  shape: buttonShape,
+                  child: additionalButton!,
+                ),
               horizontalSeparator,
               _KeyboardButton(
-                value: '0',
                 onPressed: () => passcodeController.text += '0',
                 background: buttonBackground,
                 shape: buttonShape,
-                style: textStyle,
+                child: Text('0', style: textStyle),
               ),
               horizontalSeparator,
-              // TODO Implement delete button
-              // _DeleteButton(passcodeController: passcodeController),
-              const Spacer(),
+              _KeyboardButton(
+                onPressed: () {
+                  if (passcodeController.text.isNotEmpty) {
+                    passcodeController.text = passcodeController.text
+                        .substring(0, passcodeController.text.length - 1);
+                  }
+                },
+                background: buttonBackground,
+                shape: buttonShape,
+                child: const Icon(Icons.backspace_outlined, color: Colors.red),
+              ),
             ],
           ),
         ),
@@ -332,15 +354,13 @@ class _PinKeyboard extends StatelessWidget {
 class _KeyboardButton extends StatelessWidget {
   const _KeyboardButton({
     Key? key,
-    required this.value,
-    required this.style,
+    required this.child,
     required this.background,
     required this.shape,
     required this.onPressed,
   }) : super(key: key);
 
-  final String value;
-  final TextStyle style;
+  final Widget child;
   final Color background;
   final OutlinedBorder shape;
   final VoidCallback? onPressed;
@@ -360,10 +380,7 @@ class _KeyboardButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(background),
           ),
           onPressed: onPressed,
-          child: Text(
-            value,
-            style: style,
-          ),
+          child: child,
         ),
       ),
     );

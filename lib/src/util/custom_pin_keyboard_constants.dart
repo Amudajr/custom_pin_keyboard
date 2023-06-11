@@ -22,6 +22,9 @@ class CustomPinKeyboardConstants {
   /// The default value [PinIndicator.buttonShape].
   static const _defaultButtonShape = CircleBorder();
 
+  /// The default value [CustomPinKeyboard.backspaceButton].
+  static const _defaultBackspace = Icon(Icons.backspace_outlined, color: Colors.red);
+
   /// The default value [CustomPinKeyboard.verticalSeparator].
   static const _defaultVerticalSeparator = SizedBox(height: 14);
 
