@@ -3,7 +3,7 @@ description: The best flutter package that gives you a custom keyboard for one t
 homepage: https://pub.dev/packages/custom_pin_keyboard
 repository: https://github.com/arrrtem22/custom_pin_keyboard/
 issue_tracker: https://github.com/arrrtem22/custom_pin_keyboard/issues
-version: 0.0.1
+version: 0.0.2
 
 dependencies:
   flutter:
