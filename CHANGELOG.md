@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.3
+
+- Update package description.
+
 ## 0.0.2
 
 - Update readme
