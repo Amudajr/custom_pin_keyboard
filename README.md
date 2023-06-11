@@ -1,4 +1,4 @@
-# Edit Map
+# Custom pin keyboard
 
 [![pub package](https://img.shields.io/pub/v/custom_pin_keyboard.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/custom_pin_keyboard)
 [![Last Commits](https://img.shields.io/github/last-commit/arrrtem22/custom_pin_keyboard?logo=git&logoColor=white)](https://github.com/arrrtem22/custom_pin_keyboard/commits/master)
@@ -10,8 +10,8 @@
   <img src="https://github.com/arrrtem22/custom_pin_keyboard/blob/master/screnshoot/showcase.gif?raw=true" height="600px">
 </p>
 
-A flutter package that gives you custom pin keyboard for one time password widgets.<br>
-All the shortcomings of other packages have been taken into account!
+The best flutter package that gives you a custom keyboard for one time password widgets, transaction pin widgets and simple login widgets.<br>
+All shortcomings of other packages were taken into account!!
 
 **Show some ❤️ and star the repo to support the project**
 

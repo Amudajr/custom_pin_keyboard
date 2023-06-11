@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 part 'pin_indicator.dart';
-
 part 'util/custom_pin_keyboard_constants.dart';
 
 typedef PinEnteredCallback = Future<void> Function(String passcode);
