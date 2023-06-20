@@ -159,16 +159,18 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PinIndicator(
-          passcodeController: _effectiveController,
-          length: widget.length,
-          size: widget.indicatorSize,
-          backgroundColor: widget.indicatorBackground,
-          progressColor: widget.indicatorProgressColor,
-          separator: widget.indicatorSeparator,
-          border: widget.indicatorBorder,
-        ),
-        widget.keyboardIndicatorSeparator,
+        if (widget.showIndicator) ...[
+          PinIndicator(
+            passcodeController: _effectiveController,
+            length: widget.length,
+            size: widget.indicatorSize,
+            backgroundColor: widget.indicatorBackground,
+            progressColor: widget.indicatorProgressColor,
+            separator: widget.indicatorSeparator,
+            border: widget.indicatorBorder,
+          ),
+          widget.keyboardIndicatorSeparator,
+        ],
         Expanded(
           child: _PinKeyboard(
             passcodeController: _effectiveController,
