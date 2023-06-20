@@ -13,6 +13,7 @@ class CustomPinKeyboard extends StatefulWidget {
     this.controller,
     this.restorationId,
     this.onChanged,
+    this.showIndicator = true,
     this.indicatorSize = CustomPinKeyboardConstants._defaultIndicatorSize,
     this.indicatorBackground =
         CustomPinKeyboardConstants._defaultIndicatorBackground,
@@ -57,6 +58,9 @@ class CustomPinKeyboard extends StatefulWidget {
 
   /// PIN code length.
   final int length;
+
+  /// Show indicator with keyboard.
+  final bool showIndicator;
 
   /// Size of indicator dots.
   final double indicatorSize;
