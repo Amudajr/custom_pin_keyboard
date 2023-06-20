@@ -60,6 +60,8 @@ class CustomPinKeyboard extends StatefulWidget {
   final int length;
 
   /// Show indicator with keyboard.
+  ///
+  /// You can separately use [PinIndicator].
   final bool showIndicator;
 
   /// Size of indicator dots.
@@ -157,35 +159,36 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (widget.showIndicator) ...[
-          PinIndicator(
-            passcodeController: _effectiveController,
-            length: widget.length,
-            size: widget.indicatorSize,
-            backgroundColor: widget.indicatorBackground,
-            progressColor: widget.indicatorProgressColor,
-            separator: widget.indicatorSeparator,
-            border: widget.indicatorBorder,
-          ),
-          widget.keyboardIndicatorSeparator,
-        ],
-        Expanded(
-          child: _PinKeyboard(
-            passcodeController: _effectiveController,
-            horizontalSeparator: widget.horizontalSeparator,
-            verticalSeparator: widget.verticalSeparator,
-            textStyle: widget.textStyle,
-            buttonBackground: widget.buttonBackground,
-            buttonShape: widget.buttonShape,
-            backspace: widget.backspaceButton,
-            additionalButton: widget.additionalButton,
-            onAdditionalButtonPressed: widget.onAdditionalButtonPressed,
-          ),
-        ),
-      ],
+    final pinKeyboard = _PinKeyboard(
+      passcodeController: _effectiveController,
+      horizontalSeparator: widget.horizontalSeparator,
+      verticalSeparator: widget.verticalSeparator,
+      textStyle: widget.textStyle,
+      buttonBackground: widget.buttonBackground,
+      buttonShape: widget.buttonShape,
+      backspace: widget.backspaceButton,
+      additionalButton: widget.additionalButton,
+      onAdditionalButtonPressed: widget.onAdditionalButtonPressed,
     );
+    return widget.showIndicator
+        ? Column(
+            children: [
+              PinIndicator(
+                passcodeController: _effectiveController,
+                length: widget.length,
+                size: widget.indicatorSize,
+                backgroundColor: widget.indicatorBackground,
+                progressColor: widget.indicatorProgressColor,
+                separator: widget.indicatorSeparator,
+                border: widget.indicatorBorder,
+              ),
+              widget.keyboardIndicatorSeparator,
+              Expanded(
+                child: pinKeyboard,
+              ),
+            ],
+          )
+        : pinKeyboard;
   }
 
   @override
