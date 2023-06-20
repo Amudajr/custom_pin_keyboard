@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.4
+
+- Add showIndicator variable.
+
 ## 0.0.3
 
 - Update package description.
