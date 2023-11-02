@@ -18,6 +18,7 @@ class PinIndicator extends StatelessWidget {
     this.pinContainerColor,
     this.pinContainerPadding,
     this.pinContainerBorder,
+    this.pinContainerWidth,
   }) : super(key: key);
 
   final TextEditingController passcodeController;
@@ -31,6 +32,7 @@ class PinIndicator extends StatelessWidget {
   final BorderRadiusGeometry? pinContainerBorderRadius;
   final EdgeInsetsGeometry? pinContainerPadding;
   final BoxBorder? pinContainerBorder;
+  final double? pinContainerWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class PinIndicator extends StatelessWidget {
       valueListenable: passcodeController,
       builder: (BuildContext context, TextEditingValue value, Widget? child) {
         return Container(
+          width: pinContainerWidth,
           padding: pinContainerPadding,
           decoration: BoxDecoration(
             color: pinContainerColor,

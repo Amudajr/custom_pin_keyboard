@@ -40,6 +40,7 @@ class CustomPinKeyboard extends StatefulWidget {
     this.pinContainerPadding,
     this.isSepratingWidget,
     required this.otherSeperatingWidget,
+    this.pinContainerWidth,
   }) : super(key: key);
 
   final Color? pinContainerColor;
@@ -51,6 +52,7 @@ class CustomPinKeyboard extends StatefulWidget {
   final PinEnteredCallback? onCompleted;
   final bool? isSepratingWidget;
   final Widget otherSeperatingWidget;
+  final double? pinContainerWidth;
 
   /// Used to get, modify CustomPinKeyboard value and more.
   /// Don't forget to dispose controller!
@@ -198,6 +200,7 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
                 pinContainerBorderRadius: widget.pinContainerBorderRadius,
                 pinContainerColor: widget.pinContainerColor,
                 pinContainerPadding: widget.pinContainerPadding,
+                pinContainerWidth: widget.pinContainerWidth,
               ),
               widget.keyboardIndicatorSeparator,
               widget.isSepratingWidget ?? false
