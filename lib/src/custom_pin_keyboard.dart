@@ -41,6 +41,7 @@ class CustomPinKeyboard extends StatefulWidget {
     this.isSepratingWidget,
     required this.otherSeperatingWidget,
     this.pinContainerWidth,
+    this.backBtnColor,
   }) : super(key: key);
 
   final Color? pinContainerColor;
@@ -120,6 +121,7 @@ class CustomPinKeyboard extends StatefulWidget {
 
   /// Callback of button in bottom left corner.
   final VoidCallback? onAdditionalButtonPressed;
+  final Color? backBtnColor;
 
   @override
   State<CustomPinKeyboard> createState() => _CustomPinKeyboardState();
@@ -184,6 +186,7 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
       backspace: widget.backspaceButton,
       additionalButton: widget.additionalButton,
       onAdditionalButtonPressed: widget.onAdditionalButtonPressed,
+      backBtnColor: widget.backBtnColor,
     );
     return widget.showIndicator
         ? Column(
@@ -242,6 +245,7 @@ class _PinKeyboard extends StatelessWidget {
     required this.backspace,
     this.additionalButton,
     this.onAdditionalButtonPressed,
+    this.backBtnColor,
   }) : super(key: key);
 
   final TextEditingController passcodeController;
@@ -253,6 +257,7 @@ class _PinKeyboard extends StatelessWidget {
   final Widget backspace;
   final Widget? additionalButton;
   final VoidCallback? onAdditionalButtonPressed;
+  final Color? backBtnColor;
 
   @override
   Widget build(BuildContext context) {
@@ -372,7 +377,10 @@ class _PinKeyboard extends StatelessWidget {
                 },
                 background: buttonBackground,
                 shape: buttonShape,
-                child: const Icon(Icons.backspace_outlined, color: Colors.red),
+                child: Icon(
+                  Icons.backspace_outlined,
+                  color: backBtnColor ?? Colors.red,
+                ),
               ),
             ],
           ),
