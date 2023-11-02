@@ -34,10 +34,23 @@ class CustomPinKeyboard extends StatefulWidget {
     this.backspaceButton = CustomPinKeyboardConstants._defaultBackspace,
     this.additionalButton,
     this.onAdditionalButtonPressed,
+    this.pinContainerBorder,
+    this.pinContainerBorderRadius,
+    this.pinContainerColor,
+    this.pinContainerPadding,
+    this.isSepratingWidget,
+    required this.otherSeperatingWidget,
   }) : super(key: key);
+
+  final Color? pinContainerColor;
+  final BorderRadiusGeometry? pinContainerBorderRadius;
+  final EdgeInsetsGeometry? pinContainerPadding;
+  final BoxBorder? pinContainerBorder;
 
   /// Fires when user completes pin input.
   final PinEnteredCallback? onCompleted;
+  final bool? isSepratingWidget;
+  final Widget otherSeperatingWidget;
 
   /// Used to get, modify CustomPinKeyboard value and more.
   /// Don't forget to dispose controller!
@@ -181,8 +194,15 @@ class _CustomPinKeyboardState extends State<CustomPinKeyboard>
                 progressColor: widget.indicatorProgressColor,
                 separator: widget.indicatorSeparator,
                 border: widget.indicatorBorder,
+                pinContainerBorder: widget.pinContainerBorder,
+                pinContainerBorderRadius: widget.pinContainerBorderRadius,
+                pinContainerColor: widget.pinContainerColor,
+                pinContainerPadding: widget.pinContainerPadding,
               ),
               widget.keyboardIndicatorSeparator,
+              widget.isSepratingWidget ?? false
+                  ? widget.otherSeperatingWidget
+                  : const SizedBox(),
               Expanded(
                 child: pinKeyboard,
               ),

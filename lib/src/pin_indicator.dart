@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 part of 'custom_pin_keyboard.dart';
 
 class PinIndicator extends StatelessWidget {
@@ -12,6 +14,10 @@ class PinIndicator extends StatelessWidget {
         CustomPinKeyboardConstants._defaultIndicatorProgressColor,
     this.separator = CustomPinKeyboardConstants._defaultIndicatorSeparator,
     this.border,
+    this.pinContainerBorderRadius,
+    this.pinContainerColor,
+    this.pinContainerPadding,
+    this.pinContainerBorder,
   }) : super(key: key);
 
   final TextEditingController passcodeController;
@@ -21,23 +27,35 @@ class PinIndicator extends StatelessWidget {
   final Color progressColor;
   final Widget separator;
   final Border? border;
+  final Color? pinContainerColor;
+  final BorderRadiusGeometry? pinContainerBorderRadius;
+  final EdgeInsetsGeometry? pinContainerPadding;
+  final BoxBorder? pinContainerBorder;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: passcodeController,
       builder: (BuildContext context, TextEditingValue value, Widget? child) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _generateSeparatedList(
-            length,
-            itemBuilder: (index) => _CircleBox(
-              size: size,
-              color:
-                  value.text.length > index ? progressColor : backgroundColor,
-              border: border,
+        return Container(
+          padding: pinContainerPadding,
+          decoration: BoxDecoration(
+            color: pinContainerColor,
+            borderRadius: pinContainerBorderRadius,
+            border: pinContainerBorder,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _generateSeparatedList(
+              length,
+              itemBuilder: (index) => _CircleBox(
+                size: size,
+                color:
+                    value.text.length > index ? progressColor : backgroundColor,
+                border: border,
+              ),
+              separatorBuilder: (_) => separator,
             ),
-            separatorBuilder: (_) => separator,
           ),
         );
       },

@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   isLocked = !isLocked;
                   setState(() {});
                 },
+                otherSeperatingWidget: const SizedBox(),
                 indicatorBackground: Colors.black12,
                 buttonBackground: Colors.transparent,
                 textStyle: const TextStyle(
